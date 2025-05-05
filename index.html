@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home - Class Activities</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="stocks.html">Stocks</a></li>
+      <li><a href="dogs.html">Dogs</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h1>INST377 Assignment 2 - Eugene Choi</h1>
+    <button class="custom-btn" onclick="location.href='stocks.html'">Stocks</button>
+    <button class="custom-btn" onclick="location.href='dogs.html'">Dogs</button>
+    <p id="quote"></p>
+  </main>
+  <div class="audio-box">
+    <h3>Audio Instructions</h3>
+    <p>Say "Hello", "Change the color to red", "Navigate to stocks"</p>
+    <button onclick="annyang.start()">Turn On Audio</button>
+    <button onclick="annyang.abort()">Turn Off Audio</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+  <script>
+    if (annyang) {
+      const commands = {
+        'hello': () => alert('Hello World'),
+        'change the color to *color': color => document.body.style.background = color,
+        'navigate to *page': page => location.href = `${page.toLowerCase()}.html`
+      };
+      annyang.addCommands(commands);
+    }
+  </script>
+
+  <script type="text/javascript">
+
+  const api_url ="https://zenquotes.io/api/quotes/";
+  
+  async function getapi(url) {
+    const response = await fetch(url);
+    var data = await response.json();
+    console.log(data);
+  }
+  
+  getapi(api_url);
+  
+  </script>
+</body>
+</html>
